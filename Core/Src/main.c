@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "i2c.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -45,7 +46,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-uint8_t data = 0;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -97,6 +98,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -106,14 +108,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  data = i2c_master_read_byte(LSM6DS0_DEVICE_ADDRESS, LSM6DS0_WHO_AM_I_ADDRES);
-	  if(data == LSM6DS0_WHO_AM_I_VALUE)
-		  {
-			  LL_GPIO_TogglePin(GPIOB, LL_GPIO_PIN_3);
-		  }
-	  printf(data);
 
-		  LL_mDelay(100);
     /* USER CODE BEGIN 3 */
 }
   /* USER CODE END 3 */
