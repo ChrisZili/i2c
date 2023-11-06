@@ -1,4 +1,3 @@
-/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * @file    i2c.h
@@ -7,16 +6,16 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
+  * <h2><center>&copy; Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.</center></h2>
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   */
-/* USER CODE END Header */
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __I2C_H__
 #define __I2C_H__
@@ -33,13 +32,17 @@ extern "C" {
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
-uint8_t i2c_master_read_byte(uint8_t slave_address, uint8_t register_address);
+
 /* USER CODE END Private defines */
 
 void MX_I2C1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+void master_write(uint8_t data, uint8_t register_addr, uint8_t slave_addr, uint8_t read_flag);
 
+uint8_t* master_read(uint8_t* buffer, uint8_t length, uint8_t register_addr, uint8_t slave_addr, uint8_t read_flag);
+
+void Master_Reception_Callback(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
@@ -48,3 +51,4 @@ void MX_I2C1_Init(void);
 
 #endif /* __I2C_H__ */
 
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
