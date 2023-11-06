@@ -102,7 +102,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
-
+  uint8_t* barometer_OK = 0;
+   UART_SEND_DATA(barometer_OK, sizeof(barometer_OK));
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -111,6 +112,12 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 }
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+
   /* USER CODE END 3 */
 }
 

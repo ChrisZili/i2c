@@ -40,7 +40,7 @@ void MX_USART2_UART_Init(void);
 //void UART_SendChar(char data);
 
 /* USER CODE BEGIN Prototypes */
-
+void UART_SEND_DATA(uint8_t *data, uint16_t size);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

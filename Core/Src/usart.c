@@ -85,4 +85,17 @@ void MX_USART2_UART_Init(void)
 //    // Send data
 //    USART2->DR = data;
 //}
+void UART_SEND_DATA(uint8_t *data, uint16_t size) {
+    for (uint16_t i = 0; i < size; i++) {
+        // Wait for the UART transmit data register to be empty
+        while (!LL_USART_IsActiveFlag_TXE(USART2)) {}
+
+        // Write the data to the UART data register
+        LL_USART_TransmitData8(USART2, data[i]);
+    }
+
+    // Wait for all data to be transmitted
+    while (!LL_USART_IsActiveFlag_TC(USART2)) {}
+}
+
 /* USER CODE END 1 */
