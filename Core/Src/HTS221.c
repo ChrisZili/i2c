@@ -1,4 +1,3 @@
-
 #include "HTS221.h"
 
 uint8_t HTS221_address = HTS221_DEVICE_ADDRESS_0;

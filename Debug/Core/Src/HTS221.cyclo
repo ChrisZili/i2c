@@ -1,0 +1,7 @@
+../Core/Src/HTS221.c:10:9:HTS221_read_byte	1
+../Core/Src/HTS221.c:15:6:HTS221_write_byte	1
+../Core/Src/HTS221.c:19:6:HTS221_humidity_calibration	1
+../Core/Src/HTS221.c:30:6:HTS221_temperature_calibration	1
+../Core/Src/HTS221.c:42:9:HTS221_init	3
+../Core/Src/HTS221.c:69:9:HTS221_get_humidity	1
+../Core/Src/HTS221.c:78:7:HTS221_get_temperature	1

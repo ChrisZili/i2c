@@ -21,6 +21,10 @@
 #include "i2c.h"
 #include "usart.h"
 #include "gpio.h"
+#include "HTS221.h"
+#include "LPS25HB.h"
+#include "string.h"
+#include "stdio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -38,6 +42,7 @@
 #define 	LSM6DS0_DEVICE_ADDRESS		0xD6U
 #define 	LSM6DS0_WHO_AM_I_VALUE		0x68U
 #define 	LSM6DS0_WHO_AM_I_ADDRES		0x0FU
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -46,7 +51,11 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
+uint8_t tx_data[128] ;
+volatile float temperature = 0;
+volatile uint8_t humidity = 0;
+volatile float preassure = 0;
+float altitude = 0;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -99,18 +108,29 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_USART2_UART_Init();
+
   /* USER CODE BEGIN 2 */
 
+  HTS221_init();
+  LPS25HB_init();
+  float initial_preassure = LPS25HB_get_pressure();
+
   /* USER CODE END 2 */
-  uint8_t* barometer_OK = 0;
-   UART_SEND_DATA(barometer_OK, sizeof(barometer_OK));
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
+     while (1)
+     {
 
-    /* USER CODE BEGIN 3 */
+   	  temperature = HTS221_get_temperature();
+   	  humidity = HTS221_get_humidity();
+   	  preassure = LPS25HB_get_pressure();
+   	  altitude = LPS25HB_get_altitude(initial_preassure,preassure,temperature);
+
+   	  format_string(tx_data,temperature,humidity,preassure,altitude);
+   	  uint8_t tx_data_len = (uint8_t) strlen((char*) tx_data);
+   	  UART_SEND_DATA(tx_data, tx_data_len);
+   	  LL_mDelay(1000);
 }
 
   /* USER CODE END 2 */
@@ -154,7 +174,13 @@ void SystemClock_Config(void)
   LL_RCC_SetI2CClockSource(LL_RCC_I2C1_CLKSOURCE_HSI);
 }
 
+
 /* USER CODE BEGIN 4 */
+void format_string(uint8_t* final_string,float temperature, uint8_t humidity,float preassure, float relative_height){
+	uint8_t data[] = "%.2f,%d,%.2f,%.2f \n \r";
+	sprintf((char*)final_string, (char*) data,temperature ,humidity,preassure,relative_height);
+
+}
 
 /* USER CODE END 4 */
 

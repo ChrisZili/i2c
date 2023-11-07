@@ -224,6 +224,18 @@ void USART2_IRQHandler(void)
 
   /* USER CODE END USART2_IRQn 1 */
 }
+void I2C1_EV_IRQHandler(void)
+{
+  /* USER CODE BEGIN I2C1_EV_IRQn 0 */
+	if (LL_I2C_IsActiveFlag_RXNE(I2C1)) {
+		Master_Reception_Callback();
+	}
+  /* USER CODE END I2C1_EV_IRQn 0 */
+
+  /* USER CODE BEGIN I2C1_EV_IRQn 1 */
+
+  /* USER CODE END I2C1_EV_IRQn 1 */
+}
 
 /* USER CODE BEGIN 1 */
 

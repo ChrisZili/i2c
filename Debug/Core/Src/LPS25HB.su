@@ -1,0 +1,6 @@
+../Core/Src/LPS25HB.c:10:9:LPS25HB_read_byte	32	static
+../Core/Src/LPS25HB.c:15:6:LPS25HB_write_byte	16	static
+../Core/Src/LPS25HB.c:19:6:LPS25HB_pressure_calibration	16	static
+../Core/Src/LPS25HB.c:23:9:LPS25HB_init	16	static
+../Core/Src/LPS25HB.c:50:7:LPS25HB_get_pressure	24	static
+../Core/Src/LPS25HB.c:57:7:LPS25HB_get_altitude	48	static

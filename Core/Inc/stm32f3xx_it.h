@@ -20,6 +20,7 @@
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32F3xx_IT_H
 #define __STM32F3xx_IT_H
+#include "i2c.h"
 
 #ifdef __cplusplus
  extern "C" {

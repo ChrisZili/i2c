@@ -86,7 +86,7 @@ void Error_Handler(void);
 #endif
 
 /* USER CODE BEGIN Private defines */
-
+void format_string(uint8_t* final_string,float temperature, uint8_t humidity,float preassure, float relative_height);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
